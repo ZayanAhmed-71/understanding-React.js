@@ -2,48 +2,30 @@ import { useState } from "react"
 
 const App = () => {
 
-  const [count, setcount] = useState(0);
+  const [darkMode, setdarkMode] = useState(false);
 
-  const increment = () => {
-    setcount(count + 1);
+  const chageThemes = () => {
+    setdarkMode(!darkMode);
   }
 
-  const decrement = () => {
-    setcount(count - 1);
-  }
+  return( <div className={`flex flex-col items-center justify-center min-h-screen transition-all duration-300 ${darkMode ? "bg-black text-white" : "bg-white text-black"}`}>
+    <h1 className="text-4xl font-bold mb-6">
+      {darkMode ? "🌙 Dark Mode" : "☀️ Light Mode"}
+    </h1>
 
-  const reset = () => {
-    setcount(0);
-  }
+    <button
+        onClick={chageThemes}
+        className={`px-6 py-3 rounded-lg font-semibold transition ${
+          darkMode
+            ? "bg-yellow-400 text-black hover:bg-yellow-500"
+            : "bg-gray-800 text-white hover:bg-gray-900"
+        }`}> 
+        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+      </button>
 
-  return (
-  <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-        <h1 className="text-4xl font-bold">{count}</h1>
-   
-        <div className="flex gap-3">
-          <button
-            onClick={decrement}
-            className="px-4 py-2 bg-red-500 text-white rounded"
-          >
-            Decrement
-          </button>
-   
-          <button
-            onClick={reset}
-            className="px-4 py-2 bg-gray-500 text-white rounded"
-          >
-            Reset
-          </button>
-   
-          <button
-            onClick={increment}
-            className="px-4 py-2 bg-green-500 text-white rounded"
-          >
-            Increment
-          </button>
-        </div>
-      </div>
-  );
+  </div>
+  )
+ 
 }
 
 
